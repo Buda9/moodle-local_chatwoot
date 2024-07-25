@@ -36,6 +36,9 @@ $string['base_url_help'] = 'Enter the base URL of your Chatwoot instance (e.g. h
 $string['website_token'] = 'Chatwoot Website Token';
 $string['website_token_help'] = 'Enter your Chatwoot website token. You can find this in Chatwoot under Settings - Inboxes - Settings - Website Token.';
 
+$string['hmac_token'] = 'Chatwoot hmac Token';
+$string['hmac_token_help'] = 'Enter your Chatwoot hmac token. You can find this in Chatwoot under Settings - Inboxes - Settings - Website Token.';
+
 $string['ignored_script_names'] = 'Ignored Scripts';
 $string['ignored_script_names_help'] = 'Do not load Chatwoot widget from the following files (comma-separated).';
 
