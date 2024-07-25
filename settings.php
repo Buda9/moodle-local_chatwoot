@@ -91,7 +91,7 @@ if ($hassiteconfig) {
     $name = 'local_chatwoot/launcherTitle';
     $title = get_string('launcherTitle', 'local_chatwoot');
     $description = get_string('launcherTitle_help', 'local_chatwoot');
-    $default = 'Podrška';
+    $default = 'Chat with us';
     $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_TEXT);
     $settings->add($setting);
 
