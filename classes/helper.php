@@ -55,7 +55,7 @@ class helper {
             // Grab settings for the plugin from the database
             $base_url = get_config('local_chatwoot', 'base_url');
             $website_token = get_config('local_chatwoot', 'website_token');
-            $hmac_token = 'yJx8gGJiyJpeCuBnJiWM63jk'; // User Identity Validation token
+            $hmac_token = get_config('local_chatwoot', 'hmac_token'); // User Identity Validation token
 
             // Get Chatwoot settings from the config
             $position = get_config('local_chatwoot', 'position');
