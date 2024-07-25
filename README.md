@@ -1,8 +1,29 @@
-# chatwoot #
+# Moodle Chatwoot plugin #
 
-TODO Describe the plugin shortly here.
+Chatwoot is a free and open-source alternative to Intercom. This plugin integrates the Chatwoot chat widget into Moodle, allowing you to provide real-time support and communication directly on your Moodle platform. Plugin automatically "collects" users first and last name, email and phone number.
 
-TODO Provide more detailed description here.
+## Features
+
+1. Embeds Chatwoot chat widget on the Moodle frontend.
+2. Automatically retrieves and configures necessary settings from the Moodle database.
+3. Supports guest and logged-in users.
+
+## Installation
+
+1. Download the plugin files.
+2. Place the local_chatwood folder in your Moodle's /local directory and rename it to chatwood.
+3. Navigate to your Moodle site and complete the installation process.
+4. Configure the plugin settings.
+
+## Configuration
+
+1. Go to Site administration > Plugins > Local plugins > Chatwoot settings.
+2. Enter your Chatwoot websiteToken and baseUrl.
+3. Optionaly, enter other settings like dark mode, etc.
+
+## Usage
+
+The Chatwoot chat widget will automatically appear on the frontend of your Moodle site for all users.
 
 ## License ##
 
