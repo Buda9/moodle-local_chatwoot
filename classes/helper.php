@@ -112,49 +112,53 @@ class helper {
                     "darkMode": "'.$darkMode.'"
                 };
 
-                (function(d,t) {
-                    var BASE_URL="'.$base_url.'";
-                    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-                    g.src=BASE_URL+"/packs/js/sdk.js";
-                    g.defer = true;
-                    g.async = true;
-                    s.parentNode.insertBefore(g,s);
-                    g.onload=function(){
-                        window.chatwootSDK.run({
-                            websiteToken: "'.$website_token.'",
-                            baseUrl: BASE_URL
-                        })
-                    }
-                })(document,"script");
+                document.addEventListener("DOMContentLoaded", function() {
+                    (function(d,t) {
+                        var BASE_URL="'.$base_url.'";
+                        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+                        g.src=BASE_URL+"/packs/js/sdk.js";
+                        g.defer = true;
+                        g.async = true;
+                        s.parentNode.insertBefore(g,s);
+                        g.onload=function(){
+                            window.chatwootSDK.run({
+                                websiteToken: "'.$website_token.'",
+                                baseUrl: BASE_URL
+                            })
+                        }
+                    })(document,"script");
+                });
             </script>';
 
             // Add user and course metadata
             $embed_code .=
             '<script>
-                window.addEventListener("chatwoot:ready", function() {
-                    window.$chatwoot.setUser("'.$identifier.'", {
-                        email: "'.$email.'",
-                        name: "'.$fullname.'",
-                        avatar_url: "'.$CFG->wwwroot.'/user/pix.php/'.$USER->id.'/f1.jpg",
-                        identifier_hash: "'.$identifier_hash.'",
-                        created_at: '.$firstaccess.'
-                    });
-                    window.$chatwoot.setCustomAttributes({
-                        moodle_version: "Moodle '.$CFG->release.'",
-                        company_id: "'.$SITE->shortname.'",
-                        company_name: "'.$SITE->fullname.'",
-                        company_website: "'.$CFG->wwwroot.'"';
+                document.addEventListener("DOMContentLoaded", function() {
+                    window.addEventListener("chatwoot:ready", function() {
+                        window.$chatwoot.setUser("'.$identifier.'", {
+                            email: "'.$email.'",
+                            name: "'.$fullname.'",
+                            avatar_url: "'.$CFG->wwwroot.'/user/pix.php/'.$USER->id.'/f1.jpg",
+                            identifier_hash: "'.$identifier_hash.'",
+                            created_at: '.$firstaccess.'
+                        });
+                        window.$chatwoot.setCustomAttributes({
+                            moodle_version: "Moodle '.$CFG->release.'",
+                            company_id: "'.$SITE->shortname.'",
+                            company_name: "'.$SITE->fullname.'",
+                            company_website: "'.$CFG->wwwroot.'"';
 
-                if(!empty($course)){
-                    $embed_code .= ',
-                            active_course_title: "'.$course_title.'",
-                            active_course_shortname: "'.$course->shortname.'",
-                            active_course_description: "'.strip_tags($course_desc).'",
-                            active_course_id: '.$course->id.',
-                            active_course_roles: "'.$course_roles_str.'"';
-                }
+                    if(!empty($course)){
+                        $embed_code .= ',
+                                active_course_title: "'.$course_title.'",
+                                active_course_shortname: "'.$course->shortname.'",
+                                active_course_description: "'.strip_tags($course_desc).'",
+                                active_course_id: '.$course->id.',
+                                active_course_roles: "'.$course_roles_str.'"';
+                    }
 
-            $embed_code .= '
+                $embed_code .= '
+                        });
                     });
                 });
             </script>';
