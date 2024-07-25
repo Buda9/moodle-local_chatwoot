@@ -25,11 +25,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-if ($ADMIN->fulltree) {
-// TODO: Define the plugin settings page.
-// https://docs.moodle.org/dev/Admin_settings
-}
-
 if ($hassiteconfig) {
     // Create the new settings page.
     $settings = new admin_settingpage('local_chatwoot', get_string('pluginname', 'local_chatwoot'));
@@ -64,9 +59,9 @@ if ($hassiteconfig) {
     // Add a string setting for hmac_token
     $name = 'local_chatwoot/hmac_token';
     $title = get_string('hmac_token', 'local_chatwoot');
-    $description = get_string('hmac_token_help', 'local_chatwoot');
+    $description = get_string('hmac_token_desc', 'local_chatwoot');
     $default = '';
-    $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_NOTAGS);
+    $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_TEXT);
     $settings->add($setting);
 
     // Add a select setting for position

@@ -43,7 +43,6 @@ defined('MOODLE_INTERNAL') || die();
  */
 function local_chatwoot_before_standard_html_head() {
     global $PAGE;
-
     // Trap any catchable error.
     try {
         $enabled = (bool)get_config('local_chatwoot', 'enabled');
@@ -51,13 +50,13 @@ function local_chatwoot_before_standard_html_head() {
             return '';
         }
         list($context, $course, $cm) = get_context_info_array($PAGE->context->id);
-
+        
         $ignored_scripts_str = get_config('local_chatwoot', 'ignored_script_names');
         $ignored_scripts = explode(",", $ignored_scripts_str);
         $ignore = false;
         foreach($ignored_scripts as $ignored){
             if($_SERVER['SCRIPT_NAME'] == trim($ignored)){
-                $ignore = true;
+                $ignore = true;    
             }
         }
         if(!$ignore){

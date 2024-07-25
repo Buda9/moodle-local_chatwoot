@@ -26,6 +26,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_chatwoot';
 $plugin->release = '0.2.0';
-$plugin->version = 20240725003;
+$plugin->version = 20240725005;
 $plugin->requires = 2019111800;
 $plugin->maturity = MATURITY_BETA;

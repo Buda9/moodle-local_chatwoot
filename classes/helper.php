@@ -46,9 +46,7 @@ class helper {
      * @return null|string A string containing the Chatwoot embed code, otherwise, null.
      */
     public function embed_chatwoot($context, $course) {
-        global $USER;
-        global $CFG;
-        global $SITE;
+        global $USER, $CFG, $SITE;
 
         // Trap any catchable error.
         try {
