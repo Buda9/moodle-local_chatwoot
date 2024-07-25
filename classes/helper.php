@@ -100,11 +100,6 @@ class helper {
             $identifier = $SITE->shortname."-".$USER->id;
             $identifier_hash = hash_hmac('sha256', $identifier, $hmac_token);
 
-            // Build the avatar URL
-            $user_picture = new \user_picture($USER);
-            $user_picture->size = 1; // size 1 for small image
-            $avatar_url = $user_picture->get_url($PAGE)->out(false);
-
             // Build the JS code to embed
             $embed_code =
             '<script>
@@ -142,7 +137,7 @@ class helper {
                     window.$chatwoot.setUser("'.$identifier.'", {
                         email: "'.$email.'",
                         name: "'.$fullname.'",
-                        avatar_url: "'.$avatar_url.'",
+                        avatar_url: "'.$CFG->wwwroot.'/user/pix.php/'.$USER->id.'/f1.jpg",
                         identifier_hash: "'.$identifier_hash.'",
                         created_at: '.$firstaccess.'
                     });
