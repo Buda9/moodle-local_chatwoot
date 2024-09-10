@@ -71,7 +71,7 @@ class helper {
                 $course_title = format_string($course_title, true, array('context' => \context_system::instance()));
                 $course_desc = "";
                 if (!empty($course->summary)) {
-                    $course_desc = format_text($course->summary, FORMAT_MOODLE, array('context' => \context_system::instance(), 'newlines' => true, 'nocache' => true, 'para' => false));
+                    $course_desc = format_text($course->summary, FORMAT_MOODLE, array('context' => \context_system::instance(), 'para' => false));
                     $course_desc = preg_replace("/\r|\n/", "", $course_desc);
                 }
 
