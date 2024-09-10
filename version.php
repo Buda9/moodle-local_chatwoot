@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Local Chatwoot plugin
  *
  * @package     local_chatwoot
  * @copyright   2024 Davor Budimir <davor@vokabula.com>
@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_chatwoot';
-$plugin->release = '0.2.1';
-$plugin->version = 20240725005;
-$plugin->requires = 2019111800;
+$plugin->release = '0.3.0';
+$plugin->version = 20240910003;
+$plugin->requires = 2020110900; // Moodle 3.10 and up
 $plugin->maturity = MATURITY_BETA;

@@ -15,20 +15,20 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Library of interface functions and constants for module chatwoot
- *
- * All the core Moodle functions, needed to allow the module to work
- * integrated in Moodle should be placed here.
- *
- * All the chatwoot specific functions, needed to implement all the module
- * logic, should go to locallib.php. This will help to save some memory when
- * Moodle is performing actions across all modules.
+ * Chatwoot plugin hooks definition.
  *
  * @package     local_chatwoot
+ * @category    hooks
  * @copyright   2024 Davor Budimir <davor@vokabula.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-// No functions needed here anymore. All functionality is now in the hooks class.
+$callbacks = [
+    [
+        'hook' => \core\hook\output\before_standard_head_html_generation::class,
+        'callback' => [\local_chatwoot\hooks_callbacks::class, 'before_standard_html_head'],
+        'priority' => 200,
+    ],
+];
