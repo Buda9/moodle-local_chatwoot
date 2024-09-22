@@ -25,6 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+require_once(__DIR__ . '/classes/admin_setting_configtext_disabled.php');
+
 if ($hassiteconfig) {
     // Create the new settings page.
     $settings = new admin_settingpage('local_chatwoot', get_string('pluginname', 'local_chatwoot'));
@@ -82,12 +84,12 @@ if ($hassiteconfig) {
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $settings->add($setting);
 
-    // Add a string setting for launcherTitle
+    // Add a disabled string setting for launcherTitle with a note about language strings
     $name = 'local_chatwoot/launcherTitle';
     $title = get_string('launcherTitle', 'local_chatwoot');
-    $description = get_string('launcherTitle_help', 'local_chatwoot');
-    $default = 'Chat with us';
-    $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_TEXT);
+    $description = get_string('launcherTitle_help', 'local_chatwoot') . ' ' . get_string('launcherTitle_note', 'local_chatwoot');
+    $setting = new local_chatwoot\admin_setting_configtext_disabled($name, $title, $description, '', PARAM_TEXT);
+    // The launcherTitle is disabled because it should be set via language strings, not in the settings
     $settings->add($setting);
 
     // Add a checkbox setting for showPopoutButton

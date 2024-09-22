@@ -41,11 +41,11 @@ class helper {
     /**
      * Generate the Chatwoot Javascript to embed.
      *
-     * @param null|stdClass $context Context instance
-     * @param null|stdClass $course Related course instance
+     * @param null|\stdClass $context Context instance
+     * @param null|\stdClass $course Related course instance
      * @return null|string A string containing the Chatwoot embed code, otherwise, null.
      */
-    public function embed_chatwoot($context, $course) {
+    public function embed_chatwoot(?\stdClass $context, ?\stdClass $course): ?string {
         global $USER, $CFG, $SITE;
 
         // Trap any catchable error.
@@ -58,7 +58,6 @@ class helper {
             // Get Chatwoot settings from the config
             $position = get_config('local_chatwoot', 'position');
             $type = get_config('local_chatwoot', 'type');
-            $launcherTitle = get_config('local_chatwoot', 'launcherTitle');
             $showPopoutButton = get_config('local_chatwoot', 'showPopoutButton') ? 'true' : 'false';
             $hideMessageBubble = get_config('local_chatwoot', 'hideMessageBubble') ? 'true' : 'false';
             $showUnreadMessagesDialog = get_config('local_chatwoot', 'showUnreadMessagesDialog') ? 'true' : 'false';
@@ -66,37 +65,43 @@ class helper {
             $darkMode = get_config('local_chatwoot', 'darkMode');
 
             // Get active course info
-            if(!empty($course)){
-                $course_title = empty($course->fullname) ? $course->name : $course->fullname;
-                $course_title = format_string($course_title, true, array('context' => \context_system::instance()));
+            if (!empty($course)) {
+                $course_title = $course->fullname ?? $course->name;
+                $course_title = format_string($course_title, true, ['context' => \context_system::instance()]);
                 $course_desc = "";
                 if (!empty($course->summary)) {
-                    $course_desc = format_text($course->summary, FORMAT_MOODLE, array('context' => \context_system::instance(), 'para' => false));
+                    $course_desc = format_text($course->summary, FORMAT_MOODLE, ['context' => \context_system::instance(), 'para' => false]);
                     $course_desc = preg_replace("/\r|\n/", "", $course_desc);
                 }
 
                 // Get roles for the active course
-                $course_roles = array();
+                $course_roles = [];
                 $course_roles_str = "";
                 $context = \context_course::instance($course->id);
-                if($roles = get_user_roles($context, $USER->id)){
-                    foreach ($roles as $role){
+                if ($roles = get_user_roles($context, $USER->id)) {
+                    foreach ($roles as $role) {
                         $course_roles[] = $role->shortname;
                     }
                     $course_roles_str = implode(", ", $course_roles);
                 }
             }
 
-            $username = isset($USER->username) ? $USER->username : "guest";
-            $email = isset($USER->email) ? $USER->email : "";
-            $firstname = isset($USER->firstname) ? $USER->firstname : "";
-            $lastname = isset($USER->lastname) ? $USER->lastname : "";
+            $username = $USER->username ?? "guest";
+            $email = $USER->email ?? "";
+            $firstname = $USER->firstname ?? "";
+            $lastname = $USER->lastname ?? "";
             $fullname = trim($firstname . " " . $lastname);
-            $firstaccess = isset($USER->firstaccess) ? $USER->firstaccess : "";
+            $firstaccess = $USER->firstaccess ?? "";
 
             // Generate HMAC for identity validation
             $identifier = $SITE->shortname."-".$USER->id;
             $identifier_hash = hash_hmac('sha256', $identifier, $hmac_token);
+
+            // Get user's preferred language
+            $user_language = $USER->lang ?? $CFG->lang;
+
+            // Get the translated launcher title
+            $launcherTitle = get_string('launcherTitle_text', 'local_chatwoot');
 
             // Build the JS code to embed
             $embed_code =
@@ -109,7 +114,15 @@ class helper {
                     "hideMessageBubble": '.$hideMessageBubble.',
                     "showUnreadMessagesDialog": '.$showUnreadMessagesDialog.',
                     "useBrowserLanguage": '.$useBrowserLanguage.',
-                    "darkMode": "'.$darkMode.'"
+                    "darkMode": "'.$darkMode.'"';
+
+            // Set the language if useBrowserLanguage is false
+            if ($useBrowserLanguage === 'false') {
+                $embed_code .= ',
+                    "locale": "'.$user_language.'"';
+            }
+
+            $embed_code .= '
                 };
 
                 document.addEventListener("DOMContentLoaded", function() {
@@ -131,6 +144,7 @@ class helper {
             </script>';
 
             // Add user and course metadata
+            $avatar_url = new \moodle_url('/user/pix.php/' . $USER->id . '/f1.jpg');
             $embed_code .=
             '<script>
                 document.addEventListener("DOMContentLoaded", function() {
@@ -138,7 +152,7 @@ class helper {
                         window.$chatwoot.setUser("'.$identifier.'", {
                             email: "'.$email.'",
                             name: "'.$fullname.'",
-                            avatar_url: "'.$CFG->wwwroot.'/user/pix.php/'.$USER->id.'/f1.jpg",
+                            avatar_url: "'.$avatar_url->out(false).'",
                             identifier_hash: "'.$identifier_hash.'",
                             created_at: '.$firstaccess.'
                         });
@@ -146,7 +160,8 @@ class helper {
                             moodle_version: "Moodle '.$CFG->release.'",
                             company_id: "'.$SITE->shortname.'",
                             company_name: "'.$SITE->fullname.'",
-                            company_website: "'.$CFG->wwwroot.'"';
+                            company_website: "'.$CFG->wwwroot.'",
+                            user_language: "'.$user_language.'"';
 
                     if(!empty($course)){
                         $embed_code .= ',
@@ -164,11 +179,9 @@ class helper {
             </script>';
 
             return $embed_code;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // Do nothing here.
             return null;
         }
-
-        return null;
     }
 }

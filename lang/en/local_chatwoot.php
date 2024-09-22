@@ -48,6 +48,7 @@ $string['type'] = 'Widget Type';
 $string['type_help'] = 'Choose the type of the Chatwoot widget (standard or expanded bubble).';
 $string['launcherTitle'] = 'Launcher Title';
 $string['launcherTitle_help'] = 'Set the title for the Chatwoot widget launcher.';
+$string['launcherTitle_note'] = 'Note: The launcher title is now managed through language strings. To change the title, please edit the language files.';
 $string['showPopoutButton'] = 'Show Popout Button';
 $string['showPopoutButton_help'] = 'Enable or disable the popout button in the Chatwoot widget.';
 $string['hideMessageBubble'] = 'Hide Message Bubble';
@@ -64,3 +65,6 @@ $string['privacy:metadata:chatwoot_client:userid'] = 'The userid is sent from Mo
 $string['privacy:metadata:chatwoot_client:fullname'] = 'Your full name is sent to the remote system to allow a better user experience.';
 $string['privacy:metadata:chatwoot_client:email'] = 'Your email is sent to Chatwoot to allow for email notifications and to link conversations to your account.';
 $string['privacy:metadata:chatwoot_client:created_at'] = 'The time when your account was created is sent to Chatwoot to provide context about your account history.';
+
+// Launcher title
+$string['launcherTitle_text'] = 'Chat with us';
