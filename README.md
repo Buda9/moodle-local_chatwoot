@@ -11,7 +11,7 @@ Chatwoot is a free and open-source alternative to Intercom. This plugin integrat
 ## Compatibility
 
 - Use 'main' branch for Moodle 3.10 to Moodle 4.3
-- Use 'STABLE_404' for Moodle 4.4 and up
+- [Use STABLE_404 for Moodle 4.4 and up](https://github.com/Buda9/moodle-local_chatwoot/tree/STABLE_404)
 
 ## Installation
 
