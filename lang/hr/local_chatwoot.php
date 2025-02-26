@@ -60,6 +60,8 @@ $string['useBrowserLanguage'] = 'Koristi Jezik Preglednika';
 $string['useBrowserLanguage_help'] = 'Koristi jezik preglednika za Chatwoot widget.';
 $string['darkMode'] = 'Tamni Režim';
 $string['darkMode_help'] = 'Odaberite postavku tamnog režima za Chatwoot widget.';
+$string['hideLauncherTitleOnMobile'] = 'Sakrij Naslov Launchera na Mobilnim Uređajima';
+$string['hideLauncherTitleOnMobile_help'] = 'Sakrij tekst naslova launchera na manjim ekranima.';
 
 $string['privacy:metadata:chatwoot_client'] = 'Kako bi se integrirao s udaljenom Chatwoot uslugom, neki korisnički podaci moraju biti razmijenjeni s tom uslugom.';
 $string['privacy:metadata:chatwoot_client:userid'] = 'ID korisnika se šalje iz Moodlea kako bi vam omogućio pristup vašim podacima na udaljenom sustavu.';

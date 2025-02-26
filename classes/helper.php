@@ -63,6 +63,7 @@ class helper {
             $showUnreadMessagesDialog = get_config('local_chatwoot', 'showUnreadMessagesDialog') ? 'true' : 'false';
             $useBrowserLanguage = get_config('local_chatwoot', 'useBrowserLanguage') ? 'true' : 'false';
             $darkMode = get_config('local_chatwoot', 'darkMode');
+            $hideLauncherTitleOnMobile = get_config('local_chatwoot', 'hideLauncherTitleOnMobile');
 
             // Get active course info
             if (!empty($course)) {
@@ -104,8 +105,25 @@ class helper {
             $launcherTitle = get_string('launcherTitle_text', 'local_chatwoot');
 
             // Build the JS code to embed
-            $embed_code =
-            '<script>
+            $embed_code = '';
+            
+            // Add CSS to hide launcher title on small screens if the setting is enabled
+            if ($hideLauncherTitleOnMobile) {
+                $embed_code .= '
+                <style>
+                    @media screen and (max-width: 768px) {
+                        .woot-widget-bubble.woot-widget--expanded div {
+                            display: none !important;
+                        }
+                        .woot-widget-bubble.woot-widget--expanded svg {
+                            margin-right: 14px !important;
+                        }
+                    }
+                </style>';
+            }
+            
+            $embed_code .= '
+            <script>
                 window.chatwootSettings = {
                     "position": "'.$position.'",
                     "type": "'.$type.'",

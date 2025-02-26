@@ -19,7 +19,13 @@ Chatwoot is a free and open-source alternative to Intercom. This plugin integrat
 
 1. Go to Site administration > Plugins > Local plugins > Chatwoot settings.
 2. Enter your Chatwoot websiteToken and baseUrl.
-3. Optionaly, enter other settings like dark mode, etc.
+3. Configure additional settings as needed:
+   - Widget position (left or right)
+   - Widget type (standard or expanded bubble)
+   - Show/hide popout button
+   - Hide launcher title on mobile screens
+   - Dark mode settings
+   - And other display options
 
 ## Usage
 

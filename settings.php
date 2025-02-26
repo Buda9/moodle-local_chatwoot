@@ -92,6 +92,14 @@ if ($hassiteconfig) {
     // The launcherTitle is disabled because it should be set via language strings, not in the settings
     $settings->add($setting);
 
+    // Add a checkbox setting for hideLauncherTitleOnMobile
+    $name = 'local_chatwoot/hideLauncherTitleOnMobile';
+    $title = get_string('hideLauncherTitleOnMobile', 'local_chatwoot');
+    $description = get_string('hideLauncherTitleOnMobile_help', 'local_chatwoot');
+    $default = '0';
+    $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+    $settings->add($setting);
+
     // Add a checkbox setting for showPopoutButton
     $name = 'local_chatwoot/showPopoutButton';
     $title = get_string('showPopoutButton', 'local_chatwoot');

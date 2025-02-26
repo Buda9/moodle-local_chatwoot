@@ -60,6 +60,8 @@ $string['useBrowserLanguage'] = 'Browsersprache verwenden';
 $string['useBrowserLanguage_help'] = 'Verwenden Sie die Browsersprache für das Chatwoot-Widget.';
 $string['darkMode'] = 'Dunkelmodus';
 $string['darkMode_help'] = 'Wählen Sie die Dunkelmodus-Einstellung für das Chatwoot-Widget.';
+$string['hideLauncherTitleOnMobile'] = 'Launcher-Titel auf mobilen Geräten ausblenden';
+$string['hideLauncherTitleOnMobile_help'] = 'Blendet den Launcher-Titel auf kleineren Bildschirmen aus.';
 
 $string['privacy:metadata:chatwoot_client'] = 'Um eine Integration mit dem entfernten Chatwoot-Dienst zu ermöglichen, müssen einige Benutzerdaten mit diesem Dienst ausgetauscht werden.';
 $string['privacy:metadata:chatwoot_client:userid'] = 'Die Benutzer-ID wird von Moodle gesendet, um den Zugriff auf Ihre Daten im entfernten System zu ermöglichen.';
