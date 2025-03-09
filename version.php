@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_chatwoot';
-$plugin->release = '0.4.0';
-$plugin->version = 20240922000;
+$plugin->version = 20250309000;
 $plugin->requires = 2023100900; // Moodle 4.4 and up
-$plugin->maturity = MATURITY_BETA;
+$plugin->release = '1.0.0';
+$plugin->maturity = MATURITY_STABLE;

@@ -1,5 +1,5 @@
 <?php
-// This file is part of the chatwoot local plugin for Moodle
+// This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -12,10 +12,10 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Library of interface functions and constants for module chatwoot
+ * Library of interface functions and constants for local_chatwoot
  *
  * All the core Moodle functions, needed to allow the module to work
  * integrated in Moodle should be placed here.
